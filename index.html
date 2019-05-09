@@ -212,7 +212,7 @@ Shelters
                       <div class="col-3">${list[key].tags}</div>
                       <div class="col-3">${list[key].name}</div>
                       <div class="col-3" >${list[key].location != "" ? `<a href="#" class="address-line">${list[key].address}</a>`: ''}</div>
-                      <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal data-resourceID = "${key}">More Information</a></div></div>
+                      <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal" data-resourceID = "${key}">More Information</a></div></div>
                       </div>
                       </div>`
         });
@@ -264,7 +264,7 @@ Shelters
             $("#myTable").html(createHTMLInsert(list));
             // Add a click listener to all of the 'more info' buttons
             $( ".modalClick" ).click(function() {
-              let resourceID = $(this).getAttribute('data-resourceID');
+              let resourceID = $(this).attribute('data-resourceID');
               DLib.Resources.getResourceByID(resourceID).then( (resource) => {
                 $(".modal-title").text(resource.name);
                 return resource.details();
@@ -275,12 +275,7 @@ Shelters
               }).catch( () => {
                 console.error("There was an error in filling the more information modal");
               });
-              
-              
-              var resid = document.getElementsByTagName('resid')[0];
-              var dataid = resid.getAttribute('data-resourceID');
-      
-          });
+           });
         });
       });
     });
