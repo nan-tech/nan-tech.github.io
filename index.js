@@ -51,6 +51,10 @@ function updateTable() {
     // Get the resources with the appropriate tags
     DLib.Resources.get({tags: tags}).then((list) => {
         /// Fill the table's HTML
+        if( Object.keys(list).length == 0 ) {
+            $("#myTable").html("<p>No resources were found. Try refining your search</p>");
+            return;   
+        }
         $("#myTable").html(createHTMLInsert(list));
         // Add a click listener to all of the 'more info' buttons
         $(".modalClick").click(function() {
