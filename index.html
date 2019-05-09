@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <title>Take Care</title>
+    <meta charset = "utf-8">
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type = "text/css"  href = "stylesheet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+     <script src="C:\Users\netem\Desktop\TakeCare\DLib\lib\dist.js"></script>
+
+    <link rel="shortcut icon" type="image/png" href="https://dezov.s3.amazonaws.com/media/pixel-heart-png7a0-4e36-9103-99858f8a8f5b.png"/>
+
+    <style>
+    @import url("bootstrap.min.css");
+    @import url("bootstrap-theme.css");
+
+    body {
+    margin-top: 50px;
+    background-color: #7ba2e0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    overflow-x:hidden;
+    }
+
+    .topbox{
+      width:41%;
+      background-color:#d2d8e0;
+      border-top: 20px solid grey;
+      margin-left: 30%;
+      margin-top:25px;
+      padding:0px;
+      padding-bottom:30px;
+      box-shadow:7px 7px 10px black;
+      border-radius:20px;
+    }
+
+    .name {
+      font-family: 'Lora', serif;
+      color: #000;
+      text-align: center;
+      font-size: 72px;
+    }
+
+    .byline{
+      text-align:center;
+      margin-top:20px;
+      color:black;
+      font-size:20px;
+    }
+
+    .terminal {
+      color:black;
+      background-color:#d2d8e0;
+      border-top: 20px solid grey;
+      margin-left:500px;
+      margin-top:100px;
+      padding:20px;
+      padding-bottom:30px;
+      box-shadow:7px 7px 10px black;
+      border-radius:20px;
+      width:50%;
+    }
+
+    .jumbotron{
+    color: #FFFFFF;
+    background-color:transparent !important;
+    margin-top:0px;
+    }
+
+    .footer{
+      text-align:center;
+      font-size: 15px;
+      margin-top:19%;
+      margin-left:0px;
+    }
+
+    a {
+      color:grey;
+    }
+
+    a:hover {
+      color:black;
+      text-decoration:none;
+    }
+
+    .rowformat{
+      border-top: 2px solid grey;
+      border-bottom: 2px solid grey;
+      padding-top:5px;
+      padding-bottom:5px;
+    }
+
+    .myTable{
+      color:inherit;
+    }
+
+    .small{
+      line-height: 1px;
+    }
+
+    .searchcontainer {
+      margin-top: 50px;
+      align-content: center;
+      width:500px;
+      margin-left:700px;
+    }
+
+    .yourlocation{
+      text-align: center;
+      color:fff;
+      font-family: 'Lora', serif;
+      font-size: 20px;
+      margin-bottom:10px;
+    }
+</style>
+
+
+    </head>
+
+<body>
+      <div class="topbox" style="width:44%;margin-left:28.5%">
+      <div class="name">Take Care</div>
+      <div class="byline">Support and resouces tailored to you.</div>
+    </div>
+<br>
+
+
+<div class="col-6" style="margin-left: 14%">
+  <div class="terminal">
+<h2>Supply List</h2>
+<small>Check off the things you need the most, and resources will appear in the list below.</small><br>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="clothing">
+<label class="form-check-label" for="clothing">
+Clothing
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="crisis">
+<label class="form-check-label" for="crisis">
+Crisis intervention
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="food">
+<label class="form-check-label" for="food">
+Food
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="legal">
+<label class="form-check-label" for="legal">
+Legal help
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="medical">
+<label class="form-check-label" for="medical">
+Medical
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="shelter">
+<label class="form-check-label" for="shelter">
+Shelters
+</label>
+</div>
+
+</div>
+
+</div>
+
+    <div class="terminal">
+    <h2>Resource List</h2><br>
+    <div id="myTable">
+  <div class="rowformat">
+    <div class="row">
+      <div class="col-2" style="font-style:oblique;">Tags</div>
+      <div class="col-3" style="font-style:oblique;">Name</div>
+      <div class="col-3" style="font-style:oblique;">Location</div>
+    </div>
+  </div>
+    </div>
+  </div>
+  </div>
+
+</div><!--end terminal div-->
+
+
+
+</div>
+
+
+  <script>
+
+  var tags = [];
+
+  function createHTMLInsert( list )
+      {
+        var html = "";
+        console.log("HTML generated successfully.")
+        for( var resource in list )
+          {
+            html += `<div class="rowformat">
+                      <div class="row">
+                      <div class="col-3">${resource.tags}</div>
+                      <div class="col-3">${resource.name}</div>
+                      <div class="col-3" >${resource.location != "" ? `<a href="#" class="address-line">${resource.address}</a>`: ''}</div>
+                      <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal data-resourceID = "${resourceID}">More Information</a></div></div>
+                      </div>
+                      </div>`
+          }
+          return html;
+      }
+
+  // Creates the HTML string from the data retrieved with findAllResources or searchForResource
+   function updateTable()
+    {
+        if( tags.length == 0 )
+        {
+          $("#myTable").html("No results found");
+        }
+        var insert = createHTMLInsert(tags);
+        $("#myTable").html(insert);
+    }
+
+    $( document ).ready(function(){
+
+      $(".form-check-input").change(function() {
+          if($("#clothing").is(':checked')){
+              console.log("Clothing checked");
+              tags.push("clothing");
+          }
+          if($("#crisis").is(':checked')){
+                  console.log("Crisis checked");
+                  tags.push("crisis");
+          }
+          if($("#food").is(':checked')){
+                  console.log("Food checked");
+                  tags.push("food");
+          }
+          if($("#legal").is(':checked')){
+                  console.log("Legal checked");
+                  tags.push("legal");
+          }
+          if($("#medical").is(':checked')){
+                  console.log("Medical checked");
+                  tags.push("medical");
+          }
+          if($("#shelter").is(':checked')){
+                  console.log("Shelter checked");
+                  tags.push("shelter");
+          }
+
+
+      DLib.Resources.get(tags).then( (list) => {
+          Object.keys(list).forEach(
+            resourceID => {
+            console.log("Access successful.");
+            updateTable();
+            })
+            $( "#modalClick" ).click(function() {
+              var resid = document.getElementsByTagName('resid')[0];
+              var dataid = resid.getAttribute('data-resourceID');
+              DLib.Resources.getResourceByID(dataid).then( (dataid) => {
+                // fill modal with info from resource
+                $("#myModal").append($('<div>').addClass('modal-title').css("text-align","left").append('More Information'));
+                $("#myModal").append($('<div>').addClass('modal-body').append(dataid));
+                console.log("Data filled.");
+                return dataid.details();
+              }).then((details) =>{
+                // Fill modal with info from details
+                $("#myModal").append($('<div>').addClass('modal-body').append(details));
+                  console.log("Details filled.");
+              }).catch( () => {
+                  console.log("Details could not be retrieved.");
+            });
+          }
+            ).catch( () => {
+              console.log("Error! Something went wrong.");
+              });
+            });
+          });
+        });
+
+    </script>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align:left;">More Information</h4>
+      </div>
+      <div class="modal-body">
+        <b>Description</b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+<div class="footer">
+    © 2019 With ❤️ from Davis, CA
+</div>
+
+
+</body>
+</html>
