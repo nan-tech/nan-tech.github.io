@@ -1,4 +1,6 @@
-<html lang="en" class="gr__nan-tech_github_io"><head>
+<html lang="en" class="gr__nan-tech_github_io">
+
+<head>
     <title>CareFinder</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,210 +13,205 @@
     <link rel="shortcut icon" type="image/png" href="https://dezov.s3.amazonaws.com/media/pixel-heart-png7a0-4e36-9103-99858f8a8f5b.png">
 
     <style>
-    @import url("bootstrap.min.css");
-    @import url("bootstrap-theme.css");
+        @import url("bootstrap.min.css");
+        @import url("bootstrap-theme.css");
+        body {
+            margin-top: 50px;
+            background-color: #7ba2e0;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .topbox {
+            background-color: #d2d8e0;
+            border-top: 20px solid grey;
+            box-shadow: 7px 7px 10px black;
+            border-radius: 20px;
+        }
+        
+        .name {
+            font-family: 'Lora', serif;
+            color: #000;
+            text-align: center;
+            font-size: 72px;
+        }
+        
+        .byline {
+            text-align: center;
+            margin-top: 20px;
+            color: black;
+            font-size: 20px;
+        }
+        
+        .terminal {
+            color: black;
+            background-color: #d2d8e0;
+            border-top: 20px solid grey;
+            padding: 20px;
+            padding-bottom: 30px;
+            box-shadow: 7px 7px 10px black;
+            border-radius: 20px;
+        }
+        
+        .jumbotron {
+            color: #FFFFFF;
+            background-color: transparent !important;
+            margin-top: 0px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 15px;
+            margin-top: 19%;
+            margin-left: 0px;
+        }
+        
+        a {
+            color: grey;
+        }
+        
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+        
+        .rowformat {
+            border-top: 2px solid grey;
+            border-bottom: 2px solid grey;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        .myTable {
+            color: inherit;
+        }
+        
+        .small {
+            line-height: 1px;
+        }
+        
+        .searchcontainer {
+            margin-top: 50px;
+            align-content: center;
+            width: 500px;
+            margin-left: 700px;
+        }
+        
+        .yourlocation {
+            text-align: center;
+            color: fff;
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
 
-    body {
-    margin-top: 50px;
-    background-color: #7ba2e0;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    font-family: 'Arial', sans-serif;
-    overflow-x:hidden;
-    }
-
-    .topbox{
-      background-color:#d2d8e0;
-      border-top: 20px solid grey;
-      box-shadow:7px 7px 10px black;
-      border-radius:20px;
-    }
-
-    .name {
-      font-family: 'Lora', serif;
-      color: #000;
-      text-align: center;
-      font-size: 72px;
-    }
-
-    .byline{
-      text-align:center;
-      margin-top:20px;
-      color:black;
-      font-size:20px;
-    }
-
-    .terminal {
-      color:black;
-      background-color:#d2d8e0;
-      border-top: 20px solid grey;
-      padding:20px;
-      padding-bottom:30px;
-      box-shadow:7px 7px 10px black;
-      border-radius:20px;
-    }
-
-    .jumbotron{
-    color: #FFFFFF;
-    background-color:transparent !important;
-    margin-top:0px;
-    }
-
-    .footer{
-      text-align:center;
-      font-size: 15px;
-      margin-top:19%;
-      margin-left:0px;
-    }
-
-    a {
-      color:grey;
-    }
-
-    a:hover {
-      color:black;
-      text-decoration:none;
-    }
-
-    .rowformat{
-      border-top: 2px solid grey;
-      border-bottom: 2px solid grey;
-      padding-top:5px;
-      padding-bottom:5px;
-    }
-
-    .myTable{
-      color:inherit;
-    }
-
-    .small{
-      line-height: 1px;
-    }
-
-    .searchcontainer {
-      margin-top: 50px;
-      align-content: center;
-      width:500px;
-      margin-left:700px;
-    }
-
-    .yourlocation{
-      text-align: center;
-      color:fff;
-      font-family: 'Lora', serif;
-      font-size: 20px;
-      margin-bottom:10px;
-    }
-</style>
-
-
-    </head>
+</head>
 
 <body data-gr-c-s-loaded="true" class="">
-      <div class="topbox col-6 offset-3">
-      <div class="name" style="
+    <div class="topbox col-6 offset-3">
+        <div class="name" style="
 ">Take Care</div>
-      <div class="byline">Support and resouces tailored to you.</div>
+        <div class="byline">Support and resouces tailored to you.</div>
     </div>
-<br>
+    <br>
 
+    <div class="center-block" style="width: fit-content; margin: auto; float: none;">
+        <div class="terminal">
+            <h2>Supply List</h2>
+            <small>Check off the things you need the most, and resources will appear in the list below.</small>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="clothing">
+                <label class="form-check-label" for="clothing">
+                    Clothing
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="crisis">
+                <label class="form-check-label" for="crisis">
+                    Crisis intervention
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="food">
+                <label class="form-check-label" for="food">
+                    Food
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="legal">
+                <label class="form-check-label" for="legal">
+                    Legal help
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="medical">
+                <label class="form-check-label" for="medical">
+                    Medical
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="shelter">
+                <label class="form-check-label" for="shelter">
+                    Shelters
+                </label>
+            </div>
 
-<div class="center-block" style="width: fit-content; margin: auto; float: none;">
-  <div class="terminal">
-<h2>Supply List</h2>
-<small>Check off the things you need the most, and resources will appear in the list below.</small><br>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="clothing">
-<label class="form-check-label" for="clothing">
-Clothing
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="crisis">
-<label class="form-check-label" for="crisis">
-Crisis intervention
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="food">
-<label class="form-check-label" for="food">
-Food
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="legal">
-<label class="form-check-label" for="legal">
-Legal help
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="medical">
-<label class="form-check-label" for="medical">
-Medical
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" type="checkbox" value="" id="shelter">
-<label class="form-check-label" for="shelter">
-Shelters
-</label>
-</div>
+        </div>
 
-</div>
-
-</div>
+    </div>
 
     <div class="col-10 offset-1">
-<div class="terminal" style="padding-top: 20px" style="margin-top: 25px;">
-    <h2>Resource List</h2><br>
-    <div id="myTable">   <div class="rowformat">
-                      <div class="row">
-                      <div class="col-3">shelter,food,clothing</div>
-                      <div class="col-3">Union Gospel Mission</div>
-                      <div class="col-3"><a href="#" class="address-line">400 Bannon Street</a></div>
-                      <div class="col-3"><div><a class="modalClick" href="#" data-resourceid="KjpPENoYhfzMqC8M5Px4">More Information</a></div></div>
-                      </div>
-                      </div></div>
-  </div>
-</div>
-  
-
-<!--end terminal div-->
-
-
-
-
-
-
-  <script src="index.js"></script>
-
-  <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-dialog modal-dialog-centered">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" style="text-align:left;"></h4>
-      </div>
-        <div class="modal-body"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="terminal" style="padding-top: 20px" style="margin-top: 25px;">
+            <h2>Resource List</h2>
+            <br>
+            <div id="myTable">
+                <div class="rowformat">
+                    <div class="row">
+                        <div class="col-3">shelter,food,clothing</div>
+                        <div class="col-3">Union Gospel Mission</div>
+                        <div class="col-3"><a href="#" class="address-line">400 Bannon Street</a></div>
+                        <div class="col-3">
+                            <div><a class="modalClick" href="#" data-resourceid="KjpPENoYhfzMqC8M5Px4">More Information</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+
+    <!--end terminal div-->
+
+    <script src="index.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:left;"></h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
+    <div class="footer">
+        © 2019 With ❤️ from Davis, CA
+    </div>
 
-<div class="footer">
-    © 2019 With ❤️ from Davis, CA
-</div>
+</body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span>
 
-
-
-
-</body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
+</html>
