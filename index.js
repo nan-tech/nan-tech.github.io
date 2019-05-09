@@ -17,17 +17,12 @@
         });
         return html;
       }
-   // Creates the HTML string from the data retrieved with findAllResources or searchForResource
-   // Called when the checkboxes update and the user wants to see different resources
-//    function updateTable( )
-//     {
-//         DLib.Resource.get( {tags: tags} ).then((resourceList) => {
-//           var insert = createHTMLInsert(resourceList);
-//           $("#myTable").html(insert);
-//         });
-//     }
+
     $( document ).ready(function(){
       $(".form-check-input").change(function() {
+          // Clear the tags
+          tags = [];
+        
           if($("#clothing").is(':checked')){
               console.log("Clothing checked");
               tags.push("clothing");
@@ -52,6 +47,8 @@
                   console.log("Shelter checked");
                   tags.push("shelter");
           }
+         // Clear the list before we start
+         $("#myTable").html("");
          // When the checkboxes are changed, update the table
          // Get the resources with the appropriate tags
          DLib.Resources.get(tags).then( (list) => {
