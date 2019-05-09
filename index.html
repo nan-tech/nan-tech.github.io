@@ -264,7 +264,7 @@ Shelters
             $("#myTable").html(createHTMLInsert(list));
             // Add a click listener to all of the 'more info' buttons
             $( ".modalClick" ).click(function() {
-              let resourceID = $(this).attribute('data-resourceID');
+              let resourceID = $(this).attr('data-resourceID');
               DLib.Resources.getResourceByID(resourceID).then( (resource) => {
                 $(".modal-title").text(resource.name);
                 return resource.details();
