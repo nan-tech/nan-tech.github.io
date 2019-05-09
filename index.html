@@ -4,10 +4,10 @@
     <title>CareFinder</title>
     <meta charset = "utf-8">
     <meta name ="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type = "text/css"  href = "stylesheet.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
      <script src="dist.min.js"></script>
 
@@ -201,35 +201,34 @@ Shelters
 
   var tags = [];
 
+  // Creates HTML table rows given a list of resource objects
+  // The list is a mapping of Resource IDs to Resource Objects
+  // Returns an HTML string
   function createHTMLInsert( list )
       {
         var html = "";
-        console.log("HTML generated successfully.")
-        Object.keys( list ).forEach( key => {
-         html += `<div class="rowformat">
+        Object.keys(list).forEach(key => {
+          html += `   <div class="rowformat">
                       <div class="row">
-                      <div class="col-3">${resource.tags}</div>
-                      <div class="col-3">${resource.name}</div>
-                      <div class="col-3" >${resource.location != "" ? `<a href="#" class="address-line">${resource.address}</a>`: ''}</div>
+                      <div class="col-3">${list[key].tags}</div>
+                      <div class="col-3">${list[key].name}</div>
+                      <div class="col-3" >${list[key].location != "" ? `<a href="#" class="address-line">${list[key].address}</a>`: ''}</div>
                       <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal data-resourceID = "${key}">More Information</a></div></div>
                       </div>
                       </div>`
         });
-          return html;
+        return html;
       }
 
-  // Creates the HTML string from the data retrieved with findAllResources or searchForResource
-   function updateTable()
-    {
-        if( tags.length == 0 )
-        {
-          $("#myTable").html("No results found");
-        }
-        DLib.Resources.get( {tags: []} ).then( (resourceList) => {
-	        var insert= createHTMLInsert(resourceList);
-          $("#myTable").html(insert);
-        })
-    }
+   // Creates the HTML string from the data retrieved with findAllResources or searchForResource
+   // Called when the checkboxes update and the user wants to see different resources
+//    function updateTable( )
+//     {
+//         DLib.Resource.get( {tags: tags} ).then((resourceList) => {
+//           var insert = createHTMLInsert(resourceList);
+//           $("#myTable").html(insert);
+//         });
+//     }
 
     $( document ).ready(function(){
 
@@ -259,36 +258,35 @@ Shelters
                   tags.push("shelter");
           }
 
-
-      DLib.Resources.get(tags).then( (list) => {
-          Object.keys(list).forEach(
-            resourceID => {
-            console.log("Access successful.");
-            updateTable();
-            })
-            $( "#modalClick" ).click(function() {
+         // When the checkboxes are changed, update the table
+         // Get the resources with the appropriate tags
+         DLib.Resources.get(tags).then( (list) => {
+            /// Fill the table's HTML
+            $("#myTable").html(createHTMLInsert(list));
+            // Add a click listener to all of the 'more info' buttons
+            $( ".modalClick" ).click(function() {
+              let resourceID = $(this).getAttribute('data-resourceID');
+              DLib.Resources.getResourceByID(resourceID).then( (resource) => {
+                $(".modal-title").text(resource.name);
+                return resource.details();
+              }).then( (details) => {
+                $(".modal-body").text(details.info);
+              }).then( () => {
+                $('#myModal').modal('show');
+              }).catch( () => {
+                console.error("There was an error in filling the more information modal");
+              });
+              
+              
               var resid = document.getElementsByTagName('resid')[0];
               var dataid = resid.getAttribute('data-resourceID');
-              DLib.Resources.getResourceByID(dataid).then( (dataid) => {
-                // fill modal with info from resource
-                $("#myModal").append($('<div>').addClass('modal-title').css("text-align","left").append('More Information'));
-                $("#myModal").append($('<div>').addClass('modal-body').append(dataid));
-                console.log("Data filled.");
-                return dataid.details();
-              }).then((details) =>{
-                // Fill modal with info from details
-                $("#myModal").append($('<div>').addClass('modal-body').append(details));
-                  console.log("Details filled.");
-              }).catch( () => {
-                  console.log("Details could not be retrieved.");
-            });
-          }
-            ).catch( () => {
+      
+          }).catch( () => {
               console.log("Error! Something went wrong.");
-              });
-            });
           });
         });
+      });
+    });
 
     </script>
 
@@ -302,7 +300,7 @@ Shelters
       <div class="modal-header">
         <h4 class="modal-title" style="text-align:left;">More Information</h4>
       </div>
-      <div class="modal-body">
+        <div class="modal-body">
         <b>Description</b>
         </div>
         <div class="modal-footer">
