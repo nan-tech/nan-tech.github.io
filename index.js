@@ -49,7 +49,7 @@ function updateTable() {
     $("#myTable").html("");
     // When the checkboxes are changed, update the table
     // Get the resources with the appropriate tags
-    DLib.Resources.get(tags).then((list) => {
+    DLib.Resources.get({tags: tags}).then((list) => {
         /// Fill the table's HTML
         $("#myTable").html(createHTMLInsert(list));
         // Add a click listener to all of the 'more info' buttons
