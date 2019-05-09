@@ -4,7 +4,6 @@
     <title>CareFinder</title>
     <meta charset = "utf-8">
     <meta name ="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "stylesheet" type = "text/css"  href = "stylesheet.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -206,17 +205,16 @@ Shelters
       {
         var html = "";
         console.log("HTML generated successfully.")
-        for( var resource in list )
-          {
-            html += `<div class="rowformat">
+        Object.keys( list ).forEach( key => {
+         html += `<div class="rowformat">
                       <div class="row">
                       <div class="col-3">${resource.tags}</div>
                       <div class="col-3">${resource.name}</div>
                       <div class="col-3" >${resource.location != "" ? `<a href="#" class="address-line">${resource.address}</a>`: ''}</div>
-                      <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal data-resourceID = "${resourceID}">More Information</a></div></div>
+                      <div class="col-3"><div class ="modalClick"><a href="#" data-toggle="modal" data-target="#myModal data-resourceID = "${key}">More Information</a></div></div>
                       </div>
                       </div>`
-          }
+        });
           return html;
       }
 
@@ -227,8 +225,10 @@ Shelters
         {
           $("#myTable").html("No results found");
         }
-        var insert = createHTMLInsert(tags);
-        $("#myTable").html(insert);
+        DLib.Resources.get( {tags: []} ).then( (resourceList) => {
+	        var insert= createHTMLInsert(resourceList);
+          $("#myTable").html(insert);
+        })
     }
 
     $( document ).ready(function(){
