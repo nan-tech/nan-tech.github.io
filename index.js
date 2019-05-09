@@ -62,11 +62,10 @@
               let resourceID = $(this).attr('data-resourceID');
               DLib.Resources.getResourceByID(resourceID).then( (resource) => {
                 $(".modal-title").text(resource.name);
-                return resource.details();
-              }).then( (details) => {
-                $(".modal-body").text(details.info);
-              }).then( () => {
-                $('#myModal').modal('show');
+                resource.details().then((details) => {
+                  $(".modal-body").text(details.info);
+                  $('#myModal').modal('show');
+                });
               }).catch( () => {
                 console.error("There was an error in filling the more information modal");
               });
