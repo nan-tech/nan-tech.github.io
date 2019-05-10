@@ -64,6 +64,8 @@ function updateTable() {
                 resource.details().then((details) => {
                   $(".modal-body").text('Description: ');
                     $(".modal-body").text(details.info);
+                    $(".modal-body").text(details.contact);
+                    $(".modal-body").text(details.website);
                     $('#myModal').modal('show');
                     console.log(details);
                 });
