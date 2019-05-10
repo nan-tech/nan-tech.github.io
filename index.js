@@ -55,13 +55,12 @@ function updateTable() {
             let resourceID = $(this).attr('data-resourceID');
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
                 $(".modal-title").text(`More Information: ${resource.name}`);
-                $(".modal-loc").text(`Location: ${resource.location.address}`);
+                $(".modal-loc").text(`Location: ${resource.location.address}`).append("<br><br>");;
                 resource.details().then((details) => {
-                    $(".modal-desc").text(`Description: ${details.info}`).append("<br><br><br>");
-                    $(".modal-phone").text(`Phone: ${details.contact.phone}`);
+                    $(".modal-desc").text(`Description: ${details.info}`).append("<br><br>");
+                    $(".modal-phone").text(`Phone: ${details.contact.phone}`).append("<br><br>");;
                     $(".modal-site").html( `<a href="${details.contact.website}"> Website </a>`);
                     $('#myModal').modal('show');
-                    console.log("zoop");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
