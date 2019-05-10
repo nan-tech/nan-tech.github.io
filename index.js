@@ -64,7 +64,7 @@ function updateTable() {
           //      $(".modal-body").text(`Location: ${resource.location.address}`);
                 resource.details().then((details) => {
                     $(".modal-body").text(`Description: ${details.info}`);
-                    $(".modal-body").text(`Phone: ${details.phone}`);
+                  //  $(".modal-body").text(`Phone: ${details.phone}`);
                     $('#myModal').modal('show');
                     console.log("Here's your modal");
                 });
