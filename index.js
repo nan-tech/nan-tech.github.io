@@ -65,6 +65,7 @@ function updateTable() {
                   $(".modal-body").text('Description: ');
                     $(".modal-body").text(details.info);
                     $('#myModal').modal('show');
+                    console.log(details);
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
