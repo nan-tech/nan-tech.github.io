@@ -67,6 +67,7 @@ function updateTable() {
                     $(".modal-body").text(`Phone: ${details.contact.phone}`);
                     $('#myModal').modal('show');
                     console.log(details);
+                    console.log("beeboop");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
