@@ -57,10 +57,11 @@ function updateTable() {
                 $(".modal-title").text(`More Information: ${resource.name}`);
                 $(".modal-loc").text(`Location: ${resource.location.address}`);
                 resource.details().then((details) => {
-                    $(".modal-desc").text(`Description: ${details.info}`).append("<br>");
+                    $(".modal-desc").text(`Description: ${details.info}`).append("<br><br><br>");
                     $(".modal-phone").text(`Phone: ${details.contact.phone}`);
                     $(".modal-site").html( `<a href="${details.contact.website}"> Website </a>`);
                     $('#myModal').modal('show');
+                    console.log("zoop");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
