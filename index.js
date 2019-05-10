@@ -53,20 +53,20 @@ function updateTable() {
         /// Fill the table's HTML
         if( Object.keys(list).length == 0 ) {
             $("#myTable").html("<p>No resources were found. Try refining your search</p>");
-            return;   
+            return;
         }
         $("#myTable").html(createHTMLInsert(list));
         // Add a click listener to all of the 'more info' buttons
         $(".modalClick").click(function() {
             let resourceID = $(this).attr('data-resourceID');
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
-                $(".modal-title").text(resource.name);
+                $(".modal-title").text(`More Information: ${resource.name}`);
                 resource.details().then((details) => {
                     $(".modal-body").text(details.info);
                     $('#myModal').modal('show');
                 });
             }).catch(() => {
-                console.error("There was an error in filling the more information modal");
+                console.error("There was an error retrieving more information about this resource.");
             });
         });
     });
