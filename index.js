@@ -62,12 +62,8 @@ function updateTable() {
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
                 $(".modal-title").text(`More Information: ${resource.name}`);
                 resource.details().then((details) => {
-                  $(".modal-body").text('Description: ');
+                  $(".modal-body").css("font-style","bold").text('Description: ');
                     $(".modal-body").text(details.info);
-                    $(".modal-body").text('Location: ');
-                    $(".modal-loc").text(resource.location.address);
-                    $(".modal-contact").text('Contact information: ');
-                    $(".modal-loc").text(details.contact);
                     $('#myModal').modal('show');
                 });
             }).catch(() => {
