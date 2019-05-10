@@ -22,27 +22,21 @@ function updateTable() {
     tags = [];
 
     if ($("#clothing").is(':checked')) {
-        console.log("Clothing checked");
         tags.push("clothing");
     }
     if ($("#crisis").is(':checked')) {
-        console.log("Crisis checked");
         tags.push("crisis");
     }
     if ($("#food").is(':checked')) {
-        console.log("Food checked");
         tags.push("food");
     }
     if ($("#legal").is(':checked')) {
-        console.log("Legal checked");
         tags.push("legal");
     }
     if ($("#medical").is(':checked')) {
-        console.log("Medical checked");
         tags.push("medical");
     }
     if ($("#shelter").is(':checked')) {
-        console.log("Shelter checked");
         tags.push("shelter");
     }
     // Clear the list before we start
@@ -63,12 +57,10 @@ function updateTable() {
                 $(".modal-title").text(`More Information: ${resource.name}`);
                 $(".modal-loc").text(`Location: ${resource.location.address}`);
                 resource.details().then((details) => {
-                    $(".modal-desc").text(`Description: ${details.info}`);
+                    $(".modal-desc").text(`Description: ${details.info}`).append("<br>");
                     $(".modal-phone").text(`Phone: ${details.contact.phone}`);
                     $(".modal-site").html( `<a href="${details.contact.website}"> Website </a>`);
                     $('#myModal').modal('show');
-                    console.log(details);
-                    console.log("beep");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
