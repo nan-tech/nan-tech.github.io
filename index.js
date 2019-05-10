@@ -62,7 +62,7 @@ function updateTable() {
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
                 $(".modal-title").text(`More Information: ${resource.name}`);
                 resource.details().then((details) => {
-                  $(".modal-body").css("font-style","bold").text('Description: ');
+                  $(".modal-body").css("font-style","bold").append('Description: ');
                     $(".modal-body").text(details.info);
                     $('#myModal').modal('show');
                 });
