@@ -68,7 +68,7 @@ function updateTable() {
                     $(".modal-site").text(`Website: ${details.contact.website}`);
                     $('#myModal').modal('show');
                     console.log(details);
-                    console.log("beeboop");
+                    console.log("beeboopbeep");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
