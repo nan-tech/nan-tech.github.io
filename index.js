@@ -63,9 +63,10 @@ function updateTable() {
                 $(".modal-title").text(`More Information: ${resource.name}`);
                 $(".modal-loc").text(resource.location.address);
                 resource.details().then((details) => {
-                  $(".modal-body").text('Description: ');
-                    $(".modal-body").text(details.info);
-                    $(".modal-contact").text(details.contact);
+                  $(".modal-inf").text("Description: ");
+                    $(".modal-inf").text(details.info);
+                    $(".modal-contact").text("Phone:");
+                    $(".modal-contact").text(details.phone);
                     $('#myModal').modal('show');
                     console.log(details);
                 });
