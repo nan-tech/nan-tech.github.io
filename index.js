@@ -61,11 +61,11 @@ function updateTable() {
             let resourceID = $(this).attr('data-resourceID');
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
                 $(".modal-title").text(`More Information: ${resource.name}`);
+                $(".modal-loc").text(resource.location.address);
                 resource.details().then((details) => {
                   $(".modal-body").text('Description: ');
                     $(".modal-body").text(details.info);
-                    $(".modal-body").text(details.contact);
-                    $(".modal-body").text(details.website);
+                    $(".modal-contact").text(details.contact);
                     $('#myModal').modal('show');
                     console.log(details);
                 });
