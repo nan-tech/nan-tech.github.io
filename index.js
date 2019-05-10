@@ -61,12 +61,12 @@ function updateTable() {
             let resourceID = $(this).attr('data-resourceID');
             DLib.Resources.getResourceByID(resourceID).then((resource) => {
                 $(".modal-title").text(`More Information: ${resource.name}`);
-          //      $(".modal-body").text(`Location: ${resource.location.address}`);
+                $(".modal-body").text(`Location: ${resource.location.address}`);
                 resource.details().then((details) => {
                     $(".modal-body").text(`Description: ${details.info}`);
                   //  $(".modal-body").text(`Phone: ${details.phone}`);
                     $('#myModal').modal('show');
-                    console.log("Here's your modal");
+                    console.log(details);
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
