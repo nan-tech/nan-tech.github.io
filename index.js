@@ -67,7 +67,7 @@ function updateTable() {
                     $(".modal-body").text(`Phone: ${details.phone}`);
                     $(".modal-body").text(`Website: ${details.website}`);
                     $('#myModal').modal('show');
-                    console.log(details);
+                    console.log("Here's your modal");
                 });
             }).catch(() => {
                 console.error("There was an error retrieving more information about this resource.");
