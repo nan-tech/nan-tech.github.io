@@ -111,10 +111,6 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
-
-        .modal{
-            position:absolute;
-        }
     </style>
 
 </head>
@@ -176,6 +172,13 @@
         <div class="terminal" style="padding-top: 20px">
             <h2>Resource List</h2>
             <br>
+            <div class="rowformat">
+                          <div class="row">
+                          <div class="col-3" style="font-style:oblique;">Tags</div>
+                          <div class="col-3" style="font-style:oblique;">Name</div>
+                          <div class="col-3" style="font-style:oblique;">Location</div>
+                          </div>
+                          </div>
             <div id="myTable">
                 <div class="rowformat">
                 </div>
@@ -188,7 +191,6 @@
     <script src="index.js"></script>
 
     <!-- Modal -->
-    <div class="modal">
     <div class="modal fade" id="myModal" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-dialog modal-dialog-centered">
@@ -207,7 +209,6 @@
             </div>
         </div>
     </div>
-        </div>
 
     <div class="footer">
         © 2019 With ❤️ from Davis, CA
