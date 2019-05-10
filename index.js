@@ -65,7 +65,7 @@ function updateTable() {
                 resource.details().then((details) => {
                     $(".modal-desc").text(`Description: ${details.info}`);
                     $(".modal-phone").text(`Phone: ${details.contact.phone}`);
-                    $(".modal-site").text("Website: ").html( `<a href="${details.contact.website}"> Click Here </a>`);
+                    $(".modal-site").html( `<a href="${details.contact.website}"> Website </a>`);
                     $('#myModal').modal('show');
                     console.log(details);
                     console.log("beep");
