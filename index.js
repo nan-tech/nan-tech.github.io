@@ -1,4 +1,6 @@
 var tags = [];
+var userAreaSpecifier = null;
+
 // Creates HTML table rows given a list of resource objects
 // The list is a mapping of Resource IDs to Resource Objects
 // Returns an HTML string
@@ -43,10 +45,23 @@ function updateTable() {
     $("#myTable").html("");
     // When the checkboxes are changed, update the table
     // Get the resources with the appropriate tags
-    DLib.Resources.get({tags: tags}).then((list) => {
+    let options = {tags: tags};
+    if( userAreaSpecifier !== null ) {
+        options.area = userAreaSpecifier;
+    }
+
+    DLib.Resources.get(options).then((list) => {
         /// Fill the table's HTML
         if( Object.keys(list).length == 0 ) {
-            $("#myTable").html("<p>No resources were found. Try refining your search</p>");
+	    if( userAreaSpecifier !== null ) {
+                $("#myTable").html("<p>No resources were found in your area. Would you like to <a id=\"SeeMoreResourcesLink\" href=\"#\">see resources outside of your area?</a></p>");
+		$("#SeeMoreResourcesLink").click(() => {
+		    userAreaSpecifier = null;
+	            updateTable();
+		});
+	    } else {
+                $("#myTable").html("<p>No resources were found. Try refining your search</p>");
+	    }
             return;
         }
         $("#myTable").html(createHTMLInsert(list));
@@ -72,5 +87,18 @@ function updateTable() {
 $(document).ready(function() {
     // Add event listener
     $(".form-check-input").change(updateTable);
+    
+    // Try and get the users location
+    if(navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition( (position) => {
+	    if( position.coords ) {
+		// Create an area specifier at the users position, looking at places up to 25 miles away.
+		// There is probably a more elegant way to choose a distance.
+            	userAreaSpecifier = new DLib.Resources.AreaSpecifier( position.coords.latitude, position.coords.longitude, 40233 );
+		updateTable();
+	    }
+	});
+    }
+
     updateTable(); // Load all the resources to start
 });
