@@ -33,11 +33,26 @@ function getUserArea() {
         reject();
       });
     });
+  } else if ( UserAreaSpecifier === null ) {
+    // If the user area has been nulled, we are to treat this user as if they have no area.
+    return new Promise((resolve, reject) => {
+      reject();
+    });
   } else {
     return new Promise((resolve, reject) => {
       resolve( UserAreaSpecifier );
     });
   }
+}
+
+// Ensures that subsequent calls to getUserArea return null
+function nullifyUserArea() {
+  UserAreaSpecifier = null;
+}
+
+// Ensures that subsequent calls to getUserArea will get the area from the Google API
+function resetUserArea() {
+  UserAreaSpecifier = undefined;
 }
 
 // Finds the user's city name
@@ -72,5 +87,7 @@ function getCityName() {
 
 // Export public functions into window namespace
 window.getUserArea = getUserArea;
+window.nullifyUserArea = nullifyUserArea;
+window.resetUserArea = resetUserArea;
 window.getCityName = getCityName;
 })();
