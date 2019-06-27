@@ -30,33 +30,18 @@ function updateUserCity() {
 }
 
 function updateTable() {
-    // Clear the tags
-    tags = [];
-
-    if ($("#clothing").is(':checked')) {
-        tags.push("clothing");
-    }
-    if ($("#crisis").is(':checked')) {
-        tags.push("crisis");
-    }
-    if ($("#food").is(':checked')) {
-        tags.push("food");
-    }
-    if ($("#legal").is(':checked')) {
-        tags.push("legal");
-    }
-    if ($("#medical").is(':checked')) {
-        tags.push("medical");
-    }
-    if ($("#shelter").is(':checked')) {
-        tags.push("shelter");
-    }
     // Clear the list before we start
     $("#myTable").html("");
+
     // When the checkboxes are changed, update the table
     // Get the resources with the appropriate tags
-    let options = {tags: tags};
+    let options = {};
 
+    // If there is text in the search bar use that in the query
+    const searchString = $("#searchBarInput").val();
+    if( searchString !== "" ) {
+      options.text = searchString; 
+    }
     getUserArea().then( ( userAreaSpecifier ) => {
       // If the promise to get user area is fufilled
       // set the "area" fields of the options passed to 'get'
@@ -71,7 +56,7 @@ function updateTable() {
         
         if( Object.keys(list).length == 0 ) {
           if( options.area !==  null ) {
-            $("#myTable").html("<p>No resources were found in your area. Would you like to <a id=\"SeeMoreResourcesLink\" href=\"#\">see resources outside of your area?</a></p>");
+            $("#myTable").html("<p>No resources were found in your area matching your criteria. Would you like to <a id=\"SeeMoreResourcesLink\" href=\"#\">see resources outside of your area?</a></p>");
             $("#SeeMoreResourcesLink").click(() => {
               nullifyUserArea();
 	      $("#cityName").text("anywhere");
@@ -105,11 +90,15 @@ function updateTable() {
 }
 
 $(document).ready(function() {
-    // Add event listener
-    $(".form-check-input").change(updateTable);
-    
-    updateTable();  // Load all the resources to start
-    // Update the users city on the document. We dont really care when this happens
-    updateUserCity();
+  // Add event listener to search bar
+  $("#searchBarInput").on('keypress', (event) => {
+    if( event.keyCode == 13 ) {  // Keycode 13 is enter
+      updateTable();
+    }
+  });
+
+  updateTable();  // Load all the resources to start
+  // Update the users city on the document. We dont really care when this happens
+  updateUserCity();
     
 });
