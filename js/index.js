@@ -18,6 +18,17 @@ function createHTMLInsert(list) {
     return html;
 }
 
+// Update text on the document reflecting a users city name.
+// Returns a promise
+function updateUserCity() {
+  // Get the users city name and apply that to the document async
+  return getCityName().then( (CityName) => {
+    $("#cityName").text(CityName);
+  }).catch(() => {
+    $("#cityName").text("Unkown");
+  });
+}
+
 function updateTable() {
     // Clear the tags
     tags = [];
@@ -54,6 +65,8 @@ function updateTable() {
     .catch(new Function()) // Provide no rejection handler.
                            // Not running the sucsess code handles the rejection.
     .finally( () => {
+
+      // Query the database and populate the document 
       DLib.Resources.get(options).then((list) => {
         
         if( Object.keys(list).length == 0 ) {
@@ -61,6 +74,7 @@ function updateTable() {
             $("#myTable").html("<p>No resources were found in your area. Would you like to <a id=\"SeeMoreResourcesLink\" href=\"#\">see resources outside of your area?</a></p>");
             $("#SeeMoreResourcesLink").click(() => {
               nullifyUserArea();
+	      $("#cityName").text("anywhere");
               updateTable();
             });
           } else {
@@ -95,4 +109,7 @@ $(document).ready(function() {
     $(".form-check-input").change(updateTable);
     
     updateTable();  // Load all the resources to start
+    // Update the users city on the document. We dont really care when this happens
+    updateUserCity();
+    
 });
